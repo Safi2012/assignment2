@@ -75,7 +75,7 @@ public class DSEList implements List {
 			{
 				return i;
 			}
-			curr=curr.next
+			curr=curr.next;
 		}
 		return -1;
 	}

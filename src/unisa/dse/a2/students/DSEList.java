@@ -1,9 +1,10 @@
 package unisa.dse.a2.students;
 
+import students.Node;
 import unisa.dse.a2.interfaces.List;
 
 /**
- * @author Sulaiman 
+ * @author Sulaiman Safi
  *
  */
 public class DSEList implements List {
@@ -29,13 +30,39 @@ public class DSEList implements List {
 			this.add(curr.getString());
 			curr=curr.next;
 		}
-		
-		
-		
 	}
 
 	//remove the String at the parameter's index
 	public String remove(int index) {
+		if (index >= size() || index < 0) {
+			throw new IndexOutOfBoundsException("pos = " + index + " does not exist");
+		}
+		Node toBeRemoved = head;
+		for (int i = 0; i < index; ++i) {
+			toBeRemoved = toBeRemoved.next;
+		}
+		if (toBeRemoved == null)
+			return null;
+		if(toBeRemoved==head)
+		{
+			head.prev=null;
+			head=head.next;
+			return toBeRemoved.getString();
+		}
+		else if(toBeRemoved==tail)
+		{
+			tail=tail.prev;
+			tail.next=null;
+			return toBeRemoved.getString();
+		}
+		Node previous = toBeRemoved.prev;
+		Node next = toBeRemoved.next;
+
+		previous.next = next;
+		if (next != null) {
+			next.prev = toBeRemoved.prev;
+		}
+		return toBeRemoved.getString();
 
 	}
 

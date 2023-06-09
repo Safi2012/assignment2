@@ -3,7 +3,7 @@ package unisa.dse.a2.students;
 import unisa.dse.a2.interfaces.List;
 
 /**
- * @author Sulaiman Safi 
+ * @author Sulaiman 
  *
  */
 public class DSEList implements List {
@@ -12,13 +12,26 @@ public class DSEList implements List {
 	private Node tail;
 
 	public DSEList() {
+		 head = null;
+		 tail = null; 
 		
 	}
 	public DSEList(Node head_) {
+		head = head_;
+		tail = head;
 	}
 	
 	//Takes a list then adds each element into a new list
 	public DSEList(DSEList other) { // Copy constructor. 
+		Node curr = other.head;
+		while(curr!=null)
+		{
+			this.add(curr.getString());
+			curr=curr.next;
+		}
+		
+		
+		
 	}
 
 	//remove the String at the parameter's index

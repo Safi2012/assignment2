@@ -113,13 +113,34 @@ public class DSEList implements List {
 		return size;
 	}
 	
-	//Take each element of the list a writes them to a string 
+	//Take each element of the list a writes them to a string / Override method provides a different implementation for a method that is already defined 
 	@Override
 	public String toString() {
+		Node next=head;
+		String st="";
+		while (next != null) {
+			if(next.next!=null)
+				st+=(next.getString().toString() + " ");
+			else
+				st+=(next.getString().toString());
+				next = next.next;
+		}
+		return st;
 	}
 
 	//add the parameter String at of the end of the list
 	public boolean add(String obj) {
+		Node newNode=new Node(null,null,obj);
+		if(head==null)
+		{
+			head=newNode;
+			tail=newNode;
+			return true;
+		}
+		tail.next=newNode;
+		newNode.prev=head;
+		tail=tail.next;
+		return true;
 	}
 
 	//add String at parameter's index

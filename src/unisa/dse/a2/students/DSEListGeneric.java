@@ -129,7 +129,20 @@ public class DSEListGeneric<T> implements ListGeneric<T> {
 	}
 
 	//add the parameter item at of the end of the list
-	public boolean add(Object obj) {
+	public boolean add(T obj) {
+		if(obj==null || contains(obj))
+			return false;
+		NodeGeneric<T> newNode=new NodeGeneric<T>(null,null,obj);
+		if(head==null)
+		{
+			head=newNode;
+			tail=newNode;
+			return true;
+		}
+		tail.next=newNode;
+		newNode.prev=tail;
+		tail=tail.next;
+		return true;
 	}
 
 	//add item at parameter's index

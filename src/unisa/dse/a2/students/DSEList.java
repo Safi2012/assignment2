@@ -138,7 +138,7 @@ public class DSEList implements List {
 			return true;
 		}
 		tail.next=newNode;
-		newNode.prev=head;
+		newNode.prev=tail;
 		tail=tail.next;
 		return true;
 	}

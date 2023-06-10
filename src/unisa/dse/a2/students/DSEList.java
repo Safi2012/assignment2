@@ -187,16 +187,46 @@ public class DSEList implements List {
 
 	//removes the parameter's String form the list
 	public boolean remove(String obj) {
+		if (head == null || obj == null) {
+            return false;
+        }
+        Node curr=head;
+        Node del=null;
+        for(int i=0; i<size(); i++)
+		{
+			if(obj.equals(curr.getString()))
+			{
+				del=curr;
+				break;
+			}
+			curr=curr.next;
+		}
+        if (head.equals(del)) 
+            head = del.next;
+        if (del.next != null) 
+            del.next.prev = del.prev;
+        if (del.prev != null) 
+            del.prev.next = del.next;
+        return true;
 	}
 	
 	@Override
 	public int hashCode() {
-		return 0;
+		int code=0;
+		Node curr=head;
+		for(int i=0; i<size(); i++)
+		{
+			code+=(Integer.parseInt(curr.getString()));
+			curr=curr.next;
+		}
+		return code;
 	}
 
 	@Override
 	public boolean equals(Object other) {
-		return true;
+		if(this.toString().equals(other.toString()))
+			return true;
+		return false; 
 	}
 	
 }

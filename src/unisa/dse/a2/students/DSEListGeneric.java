@@ -96,6 +96,9 @@ public class DSEListGeneric<T> implements ListGeneric<T> {
 
 	//checks if there is a list
 	public boolean isEmpty() {
+		boolean isEmpty = (size() > 0) ? false : true;
+		return isEmpty;
+		
 	}
 
 	//return the size of the list

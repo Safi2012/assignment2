@@ -144,7 +144,31 @@ public class DSEList implements List {
 	}
 
 	//add String at parameter's index
-	public boolean add(int index, String obj) {
+	public boolean add(int index, String obj) {{if (index > size() || index < 0) {
+		throw new IndexOutOfBoundsException("pos = " + index + " does not exist");
+	}
+	if(index==size()) {
+		add(obj);
+		return true;
+	}
+	Node node=head;
+	for (int i = 0; i < index; ++i) {
+		node = node.next;
+	}
+	Node newNode=new Node(null,null,obj);
+	if(head==node)
+	{
+		newNode.next=head;
+		head.prev=newNode;
+		head=head.prev;
+		return true;
+	}
+	newNode.next=node;
+	newNode.prev=node.prev;
+	node.prev.next=newNode;
+	node.prev=newNode;
+	return true;
+		
 	}
 
 	//searches list for parameter's String return true if found

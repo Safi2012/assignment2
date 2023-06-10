@@ -31,11 +31,39 @@ public class DSEListGeneric<T> implements ListGeneric<T> {
 			curr=curr.next;
 		}
 	}
-
 	//remove and return the item at the parameter's index
-	public void remove(int index) {
+	public T remove(int index) {
+		if (index >= size() || index < 0) {
+			throw new IndexOutOfBoundsException("pos = " + index + " does not exist");
+		}
+		NodeGeneric<T> toBeRemoved = head;
+		for (int i = 0; i < index; ++i) {
+			toBeRemoved = toBeRemoved.next;
+		}
+		if (toBeRemoved == null)
+			return null;
+		if(toBeRemoved==head)
+		{
+			head.prev=null;
+			head=head.next;
+			return toBeRemoved.get();
+		}
+		else if(toBeRemoved==tail)
+		{
+			tail=tail.prev;
+			tail.next=null;
+			return toBeRemoved.get();
+		}
+		NodeGeneric<T> previous = toBeRemoved.prev;
+		NodeGeneric<T> next = toBeRemoved.next;
 
+		previous.next = next;
+		if (next != null) {
+			next.prev = toBeRemoved.prev;
+		}
+		return toBeRemoved.get();
 	}
+
 
 	//returns the index of the String parameter 
 	public int indexOf(String obj) {

@@ -96,10 +96,21 @@ public class DSEList implements List {
 
 	//checks if there is a list
 	public boolean isEmpty() {
+		if(size()==0)
+			return true;
+		return false;
 	}
 
 	//return the size of the list
 	public int size() {
+		Node curr=head;
+		int size=0;
+		while(curr!=null)
+		{
+			curr=curr.next;
+			size++;
+		}
+		return size;
 	}
 	
 	//Take each element of the list a writes them to a string 

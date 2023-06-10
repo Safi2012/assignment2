@@ -3,7 +3,7 @@ package unisa.dse.a2.students;
 import unisa.dse.a2.interfaces.ListGeneric;
 
 /**
- * @author simont
+ * @author Sulaiman Safi 
  *
  */
 public class DSEListGeneric implements ListGeneric {

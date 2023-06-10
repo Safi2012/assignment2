@@ -174,21 +174,46 @@ public class DSEListGeneric<T> implements ListGeneric<T> {
 	}
 
 	//searches list for parameter's String return true if found
-	public boolean contains(Object obj) {
+	public boolean contains(T obj) {
+		NodeGeneric<T> curr=head;
+		for(int i=0; i<size(); i++)
+		{
+			if(obj.equals(curr.get()))
+			{
+				return true;
+			}
+			curr=curr.next;
+		}
+		return false;
 	}
 
 	//removes the parameter's item form the list
-	public boolean remove(Object obj) {
+	public boolean remove(T obj) {
+		int index = indexOf(obj);
+		if (index == -1)
+			return false;
+		if(remove(index)==null)
+			return false;
+		return true;
 	}
 	
 	@Override
 	public int hashCode() {
-		return 0;
+		int code=0;
+		NodeGeneric<T> curr=head;
+		for(int i=0; i<size(); i++)
+		{
+			code+=(Integer.parseInt(curr.toString()));
+			curr=curr.next;
+		}
+		return code;
 	}
 
 	@Override
 	public boolean equals(Object other) {
-		return true;
+		if(this.toString().equals(other.toString()))
+			return true;
+		return false;
 	}
 	
 }

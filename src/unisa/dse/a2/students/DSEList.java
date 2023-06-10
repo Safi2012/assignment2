@@ -144,7 +144,7 @@ public class DSEList implements List {
 	}
 
 	//add String at parameter's index
-	public boolean add(int index, String obj) {{if (index > size() || index < 0) {
+	public boolean add(int index, String obj){if (index > size() || index < 0) {
 		throw new IndexOutOfBoundsException("pos = " + index + " does not exist");
 	}
 	if(index==size()) {
@@ -173,6 +173,16 @@ public class DSEList implements List {
 
 	//searches list for parameter's String return true if found
 	public boolean contains(String obj) {
+		Node curr=head;
+		for(int i=0; i<size(); i++)
+		{
+			if(obj.equals(curr.getString()))
+			{
+				return true;
+			}
+			curr=curr.next;
+		}
+		return false;
 	}
 
 	//removes the parameter's String form the list

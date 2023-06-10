@@ -3,7 +3,7 @@ package unisa.dse.a2.students;
 public class ListedCompany {
 
 	/**
-	 * The full name of the company
+	 * The full name of the company 
 	 */
 	private String name;
 	

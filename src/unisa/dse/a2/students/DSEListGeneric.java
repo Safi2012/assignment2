@@ -103,6 +103,14 @@ public class DSEListGeneric<T> implements ListGeneric<T> {
 
 	//return the size of the list
 	public int size() {
+		int count = 0;
+		NodeGeneric<T> curr = head;
+		while(curr!=null)
+		{
+			curr=curr.next;
+			count++;
+		}
+		return count;
 	}
 	
 	//Take each element of the list a writes them to a string 

@@ -3,7 +3,6 @@ package unisa.dse.a2.students;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import unisa.dse.a2.interfaces.ListGeneric;
 
 public class SecuritiesExchange {
 
@@ -13,17 +12,18 @@ public class SecuritiesExchange {
 	private String name;
 	
 	public String getName() {
+		return name;
 	}
 	
 	/**
 	 * List of brokers on this exchange
 	 */
-	public ListGeneric<StockBroker> brokers;
+	public DSEListGeneric<StockBroker> brokers;
 	
 	/**
 	 * List of announcements of each trade processed
 	 */
-	public ListGeneric<String> announcements;
+	public DSEListGeneric<String> announcements;
 	
 	/**
 	 * HashMap storing the companies, stored based on their company code as the key
@@ -36,6 +36,10 @@ public class SecuritiesExchange {
 	 */
 	public SecuritiesExchange(String name)
 	{
+		this.name=name;
+		brokers=new DSEListGeneric<StockBroker>();
+		this.announcements=new DSEListGeneric<String>();
+		this.companies=new HashMap<String, ListedCompany>();
 	}
 	
 	/**
@@ -45,6 +49,12 @@ public class SecuritiesExchange {
 	 */
 	public boolean addCompany(ListedCompany company)
 	{
+		if(company==null)
+			return false;
+		if(companies.put(company.getCode(), company)==null)
+			
+		return true;
+		return false;
 	}
 
 	/**
@@ -53,6 +63,7 @@ public class SecuritiesExchange {
 	 */
 	public boolean addBroker(StockBroker broker)
 	{
+		return brokers.add(broker);
 	}
 	
 	/**
@@ -71,12 +82,33 @@ public class SecuritiesExchange {
 	 * @return The number of successful trades completed across all brokers
 	 * @throws UntradedCompanyException when traded company is not listed on this exchange
 	 */
-	public int processTradeRound()
+	public int processTradeRound() throws UntradedCompanyException
 	{
+		int trades=0;
+		for(int i=0; i<brokers.size(); i++)
+		{
+			if(brokers.get(i).getPendingTradeCount()>0)				
+			{
+				//companies.get(brokers.get(i)).processTrade(i)
+				Trade t=brokers.get(i).getNextTrade();
+				
+				ListedCompany c=companies.get(t.listedCompanyCode);
+				if(c==null)
+						throw new UntradedCompanyException("");
+				String st="Trade: "+t.getShareQuantity()+" "+ c.getCode()+" @ "+c.getCurrentPrice()+" via "+brokers.get(i).getName();
+				System.out.println(st);
+				this.announcements.add(st);
+				c.processTrade(t.getShareQuantity());
+				trades++;
+			}
+		}
+		return trades;
 	}
+	
+	
 	
 	public int runCommandLineExchange(Scanner sc)
 	{
-		
+		return 0;
 	}
 }

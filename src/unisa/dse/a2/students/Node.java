@@ -12,6 +12,7 @@ package unisa.dse.a2.students;
  * ===========================================================
  * 
  */
+// No changes has been made to this class
 public class Node {
 
 	public Node next;

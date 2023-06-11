@@ -30,6 +30,7 @@ public class StockBroker {
 	 */
 	public boolean addWatchlist(String companyCode)
 	{
+		return watchList.add(companyCode);
 	}
 	
 	private String name;
@@ -39,6 +40,7 @@ public class StockBroker {
 	 * @return
 	 */
 	public String getName() {
+		return this.name;
 	}
 	
 	/**
@@ -47,6 +49,7 @@ public class StockBroker {
 	 */
 	public StockBroker(String name)
 	{
+		this.name=name;
 	}
 	
 	/**
@@ -56,6 +59,10 @@ public class StockBroker {
 	 */
 	public boolean placeOrder(Trade order)
 	{
+		if(pendingTrades.contains(order) || order==null)
+			return false;
+		boolean f=pendingTrades.add(order);
+		return f;
 	}
 	
 	/**
@@ -64,6 +71,7 @@ public class StockBroker {
 	 */
 	public Trade getNextTrade()
 	{
+		return pendingTrades.remove();
 	}
 	
 	/**
@@ -71,6 +79,7 @@ public class StockBroker {
 	 */
 	public int getPendingTradeCount()
 	{
+		return pendingTrades.size();
 	}
 
 	/**

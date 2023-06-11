@@ -1,7 +1,6 @@
 package unisa.dse.a2.students;
 
-import students.DSEListGeneric;
-import students.NodeGeneric;
+
 import unisa.dse.a2.interfaces.ListGeneric;
 
 /**

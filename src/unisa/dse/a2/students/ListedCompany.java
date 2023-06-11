@@ -16,7 +16,7 @@ public class ListedCompany {
 	 */
 	private String code;
 	
-	public void getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -25,7 +25,7 @@ public class ListedCompany {
 	 */
 	private int currentPrice;
 	
-	public void getCurrentPrice() {
+	public int getCurrentPrice() {
 		return this.currentPrice;
 	}
 	
@@ -44,7 +44,7 @@ public class ListedCompany {
 	 * @param quantity
 	 * @return the price after adjustment
 	 */
-	public void processTrade(int quantity)
+	public int processTrade(int quantity)
 	{
 		currentPrice+=(quantity/100);
 		if(currentPrice<1)

@@ -14,7 +14,7 @@ public class Trade implements Comparable<Trade> {
 	 */
 	public long getCreated()
 	{
-		return this.getCreated();
+		return this.created;
 	}
 	
 	public Trade(String listedCompanyCode, int shareQuantity, StockBroker broker) {

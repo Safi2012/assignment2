@@ -27,6 +27,7 @@ public class NodeGeneric<T> {
 		return t;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object other) {
 		if (this == other)

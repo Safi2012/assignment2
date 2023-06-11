@@ -16,7 +16,7 @@ import unisa.dse.a2.junit.TradeTest;
 import unisa.dse.a2.students.ListedCompany;
 
 /**
- * @author simont
+ * @author Sulaiman Safi 
  * @author james.walsh@unisa.edu.au
  *
  */

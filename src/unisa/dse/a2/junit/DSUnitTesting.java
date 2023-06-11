@@ -9,7 +9,7 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
 /**
- * @author simont
+ * @author Sulaiman Safi 
  * @author james.walsh@unisa.edu.au
  *
  */

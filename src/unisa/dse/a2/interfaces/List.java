@@ -1,7 +1,7 @@
 package unisa.dse.a2.interfaces;
 
 /**
- * @author simont
+ * @author Sulaiman Safi 
  *
  */
 public interface List {

@@ -12,16 +12,26 @@ public class Trade implements Comparable<Trade> {
 	/**
 	 * @return Track the moment in time this Trade was created
 	 */
-	public void getCreated()
+	public long getCreated()
 	{
+		return this.getCreated();
 	}
+	
+	public Trade(String listedCompanyCode, int shareQuantity, StockBroker broker) {
+		super();
+		this.listedCompanyCode = listedCompanyCode;
+		this.shareQuantity = shareQuantity;
+		this.broker = broker;
+	}
+	
 	
 	public String listedCompanyCode;
 
 	/**
 	 * @return The company's code
 	 */
-	public void getCompanyCode() {
+	public String getCompanyCode() {
+		return this.listedCompanyCode;
 	}
 	
 	private int shareQuantity;
@@ -29,7 +39,8 @@ public class Trade implements Comparable<Trade> {
 	/**
 	 * @return The quantity of shares to trade
 	 */
-	public void getShareQuantity() {
+	public int getShareQuantity() {
+		return this.shareQuantity;
 	}
 
 	private StockBroker broker;
@@ -37,18 +48,19 @@ public class Trade implements Comparable<Trade> {
 	/**
 	 * @return The broker associated with this trade
 	 */
-	public void getStockBroker() {
+	public StockBroker getStockBroker() {
+		return this.broker;
 	}
 
 
 	/***
 	 * Do not modify this constructor, it is used for testing purposes only
 	 */
-	public Trade(StockBroker broker, int id)
+	public Trade(StockBroker broker, int id)// throws InterruptedException
 	{
 		created = System.nanoTime(); //do not change this
 		tradeId = id; //do not change this
-		try { Thread.sleep(100); } catch (Exception x) {}
+		//Thread.sleep(100)
 	}
 	
 	/***
@@ -63,7 +75,11 @@ public class Trade implements Comparable<Trade> {
 	{
 		created = System.nanoTime(); //do not change this
 		tradeId = System.nanoTime(); //do not change this
-		try { Thread.sleep(100); } catch (Exception x) {}
+		//Thread.sleep(100); 
+		this.broker=broker;
+		this.listedCompanyCode=listedCompanyCode;
+		this.shareQuantity=shareQuantity;
+				
 	}
 	
 	/**
@@ -81,6 +97,18 @@ public class Trade implements Comparable<Trade> {
 	 */
 	public int compareTo(Trade t)
 	{
+		if(t.broker.getWatchlist().contains(this.listedCompanyCode) && this.broker.getWatchlist().contains(t.listedCompanyCode))
+			return 0;
+		if(this.broker.getWatchlist().contains(t.listedCompanyCode))
+			return -1;
+		if(t.broker.getWatchlist().contains(this.listedCompanyCode))
+			return 1;
+		if(this.created==t.created)
+			return 0;
+		if(this.created>t.created)
+			return 1;
+		return -1;
+		
 	}
 	
 
